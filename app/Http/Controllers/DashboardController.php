@@ -10,6 +10,7 @@ use validator;
 use App\Content;
 use App\Category;
 use App\Kamus;
+use App\Quiz;
 
 class DashboardController extends Controller
 {
@@ -50,6 +51,19 @@ class DashboardController extends Controller
             'last_update_data' => $last_update_data,
         ];
 
-        return Responses::sendResponse($dataResult, 'Crd Content Retrieved Successfully');
+        return Responses::sendResponse($dataResult, 'Card Content Retrieved Successfully');
+    }
+
+    public function CardQuiz()
+    {
+        $total_data       = Quiz::select('id')->count();
+        $last_update_data = Quiz::orderBy('created_at', 'DESC')->pluck('created_at')->first();
+
+        $dataResult = [
+            'total_data'       => $total_data,
+            'last_update_data' => $last_update_data,
+        ];
+
+        return Responses::sendResponse($dataResult, 'Card Quiz Retrieved Successfully');
     }
 }

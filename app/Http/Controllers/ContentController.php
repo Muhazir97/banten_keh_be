@@ -89,14 +89,14 @@ class ContentController extends Controller
         $per_page = 100;
 
         if(!empty($request->input('search'))){
-            $data = DB::table('t_contents')
+            $data = DB::table('t_content')
                     ->where('judul_content', 'LIKE', "%".$request->search."%")
                     ->orderBy('created_at', 'DESC')
                     ->paginate($per_page);
 
             $links = $data->appends(['search' => $request->search])->links();
         } else {
-            $data = DB::table('t_contents')
+            $data = DB::table('t_content')
                     ->orderBy('created_at', 'DESC')
                     ->paginate($per_page);
 

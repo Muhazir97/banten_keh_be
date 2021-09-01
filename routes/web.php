@@ -29,6 +29,8 @@ $router->get('/', function () use ($router) {
 	$router->get('content/detail-content/{id}', 'ContentController@detailContent');
 	$router->get('content/counter-visit/{id}', 'ContentController@CounterVisit');
 	$router->post('content/upload-image-ck', 'ContentController@uploadImageCk');
+	//QUIZ
+	$router->get('quiz', 'QuizController@quiz');
 
 // ================================= FOR ADMIN ==========================================================
 $router->group(['middleware' => 'jwt.tymon'], function () use ($router){
@@ -36,6 +38,7 @@ $router->group(['middleware' => 'jwt.tymon'], function () use ($router){
 	$router->get('dashboard/content-terpopuler', 'DashboardController@ContentTerpopuler');
 	$router->get('dashboard/card-kamus', 'DashboardController@CardKamus');
 	$router->get('dashboard/card-content', 'DashboardController@CardContent');
+	$router->get('dashboard/card-quiz', 'DashboardController@CardQuiz');
 	//KAMUS
 	$router->get('kamus/index-admin', 'KamusController@IndexAdmin');
 	$router->get('kamus/show/{id}', 'KamusController@show');
@@ -54,7 +57,10 @@ $router->group(['middleware' => 'jwt.tymon'], function () use ($router){
 	$router->post('admin/create', 'DataAdminController@store');
 	$router->post('admin/update/{id}', 'DataAdminController@update');
 	$router->post('admin/delete/{id}', 'DataAdminController@destroy');
+	//QUIZ
+	$router->get('quiz/index', 'QuizController@index');
+	$router->get('quiz/show/{id}', 'QuizController@show');
+	$router->post('quiz/create', 'QuizController@store');
+	$router->post('quiz/update/{id}', 'QuizController@update');
+	$router->post('quiz/delete/{id}', 'QuizController@destroy');
 });
-	// $router->get('sap-configuration/sap-sync-master/show/{id}', 'SapSyncMasterController@show');
-	// $router->post('sap-configuration/sap-sync-master/update/{id}', 'SapSyncMasterController@update');
-	// $router->post('sap-configuration/sap-sync-master/delete/{id}', 'SapSyncMasterController@destroy');

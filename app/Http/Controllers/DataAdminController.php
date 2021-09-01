@@ -35,9 +35,12 @@ class DataAdminController extends Controller
             $links = $data->links();
         }
 
+        $role = LoggedUser::get()['user']->role;
+
         $dataResult = [
             'data'  => $data,
             'links' => $links,
+            'role'  => $role,
         ];
 
         if (count($data) == 0) {
